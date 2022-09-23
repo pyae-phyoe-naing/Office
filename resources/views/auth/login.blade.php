@@ -17,13 +17,13 @@
                             @csrf
 
                             <div class="md-form">
-                                <label for="email" class=" col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                                <label for="email" class=" col-form-label text-md-right">{{ __('Phone') }}</label>
 
-                                <input id="email" type="email"
-                                    class="form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input type="number"
+                                    class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                    value="{{ old('phone') }}" required >
 
-                                @error('email')
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
