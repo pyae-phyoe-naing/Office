@@ -18,6 +18,8 @@
 
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    {{-- Datatable --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -67,7 +69,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('employee.index') }}">
                                 <i class="fa fa-users"></i>
                                 <span>Employees</span>
                             </a>
@@ -98,7 +100,7 @@
                                 <span class="badge badge-pill badge-primary">Beta</span>
                             </a>
                         </li>
-                      
+
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->
@@ -119,7 +121,11 @@
             </div>
         </div>
         <div class="py-4">
-            @yield('content')
+            <div class="d-flex justify-content-center ">
+                <div class="col-md-8">
+                    @yield('content')
+                </div>
+            </div>
         </div>
         <div class="bottom-bar ">
             <div class="d-flex justify-content-center ">
@@ -158,6 +164,9 @@
     </script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    {{-- Datatable --}}
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script>
         jQuery(function($) {
 
@@ -198,6 +207,7 @@
 
         });
     </script>
+    @yield('script')
 </body>
 
 </html>
