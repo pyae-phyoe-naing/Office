@@ -84,8 +84,21 @@ class EmployeeController extends Controller
         //
     }
 
-    public function ssd(Request $request){
-        $employees = User::query();
-        return Datatables::of($employees)->make(true);
+    public function ssd(Request $request)
+    {
+        $employees = User::with('department');
+        return Datatables::of($employees)
+            ->addColumn('department_name', function ($each) {
+                return $each->department ? $each->department->title : '-';
+            })
+            ->editColumn('is_present',function($each){
+                if($each->is_present == 1){
+                    return '<span class="badge badge-pill badge-success">Present</span>';
+                }else{
+                return '<span class="badge badge-pill badge-danger">Leave</span>';
+                }
+            })
+            ->rawColumns(['is_present'])
+            ->make(true);
     }
 }

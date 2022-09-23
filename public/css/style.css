@@ -1,3 +1,7 @@
+.badge{
+    padding:6px;
+    font-size: 12px;
+}
 .btn-theme{
     color: #fff;
     background-color: #4CD195 !important;
@@ -28,7 +32,10 @@
     font-size: 12px;
     text-transform: uppercase;
 }
-
+/* Database  */
+.pagination .page-item.active .page-link {
+        background-color: #4CD195 !important;
+}
 /*  -------- Side Bar ----------- */
 #show-sidebar{
     color: #000;
