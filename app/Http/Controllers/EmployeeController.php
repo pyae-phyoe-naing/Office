@@ -63,7 +63,21 @@ class EmployeeController extends Controller
 
     public function update(UpdateEmployee $request, $id)
     {
-        //
+        $employee = User::findOrFail($id);
+        $employee->employee_id = $request->employee_id;
+        $employee->name = $request->name;
+        $employee->phone = $request->phone;
+        $employee->email = $request->email;
+        $employee->password = $request->password ?  Hash::make($request->password) : $employee->password;
+        $employee->nrc_number = $request->nrc_number;
+        $employee->gender = $request->gender;
+        $employee->birthday = $request->birthday;
+        $employee->address = $request->address;
+        $employee->department_id = $request->department_id;
+        $employee->date_of_join = $request->date_of_join;
+        $employee->is_present = $request->is_present;
+        $employee->update();
+        return redirect()->route('employee.index')->with('update', 'Employee successfully updated');
     }
 
     public function destroy($id)

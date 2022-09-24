@@ -238,6 +238,14 @@
                     confirmButtonText: 'Continue'
                 })
             @endif
+             @if (session('update'))
+                Swal.fire({
+                    title: 'Success',
+                    text: "{{ session('update') }}",
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
+                })
+            @endif
         });
     </script>
     @yield('script')
