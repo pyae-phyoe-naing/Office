@@ -85,6 +85,9 @@ class EmployeeController extends Controller
             ->editColumn('updated_at',function($each){
             return Carbon::parse($each->updated_at)->format('Y-m-d H:i:s');
             })
+            ->addColumn('plus-icon',function($each){
+                return null;
+            })
             ->rawColumns(['is_present'])
             ->make(true);
     }

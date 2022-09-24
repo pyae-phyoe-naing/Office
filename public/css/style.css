@@ -40,10 +40,39 @@
     height: 85vh !important;
     overflow: scroll !important;
 }
-/* Database  */
+/* Datatabale  */
+.paginate_button{
+    background: #eee;
+    color: #fff !important;
+    margin: 0 2px;
+    font-size: 14px;
+}
 .pagination .page-item.active .page-link {
         background-color: #4CD195 !important;
 }
+table.dataTable>tbody>tr.child ul.dtr-details {
+    width: 100%;
+}
+table.dataTable>tbody>tr.child ul.dtr-details>li{
+    text-align: left !important;
+}
+div.dataTables_wrapper div.dataTables_filter label {
+
+    width: 100%;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+    width: 75% !important;
+}
+@media screen and (max-width: 767px){
+div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info, div.dataTables_wrapper div.dataTables_paginate {
+    text-align: left !important;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    justify-content: start!important;
+}
+}
+
+
 /*  -------- Side Bar ----------- */
 #show-sidebar{
     color: #000;

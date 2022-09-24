@@ -7,8 +7,9 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-bordered Datatable">
+            <table class="table table-bordered Datatable display nowrap" style="width:100%">
                 <thead>
+                    <th class="text-center no-sort"></th>
                     <th class="text-center">Employee ID</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Phone</th>
@@ -30,6 +31,11 @@
                 serverSide: true,
                 ajax: '/employee/datatable/ssd',
                 columns: [{
+                        data: 'plus-icon',
+                        name: 'plus-icon',
+                        class: 'text-center'
+                    },
+                    {
                         data: 'employee_id',
                         name: 'employee_id',
                         class: 'text-center'
@@ -62,16 +68,39 @@
                     {
                         data: 'updated_at',
                         name: 'updated_at',
-                        class: 'hidden text-center'
+                        class: ' text-center'
                     }
                 ],
                 order: [
-                    [6, 'desc'] // 6 is column index
+                    [7, 'desc'] // 6 is column index
                 ],
                 columnDefs: [{
-                    target: 6,
-                    visible: false,
-                }],
+                        target: [7],
+                        visible: false,
+                    }, {
+                        target: [0],
+                        class: 'control',
+                    }, {
+                        target: 'no-sort',
+                        orderable: false
+                    },
+                    {
+                        target: 'hidden',
+                        orderable: false
+                    },
+                    {
+                        target: 'no-search',
+                        searchable: false
+                    }
+                ],
+                responsive: true,
+                language: {
+                    paginate: {
+                       "previous":"<i class='far fa-arrow-alt-circle-left'></i>",
+                       "next":"<i class='far fa-arrow-alt-circle-right'></i>"
+                    },
+                processing:"<img src='/image/loading.gif' style='width:50px'/><p class='my-3'>Loading...</p>"
+                },
             });
         })
     </script>
