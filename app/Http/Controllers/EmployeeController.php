@@ -8,6 +8,7 @@ use App\Department;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests\StoreEmployee;
+use App\Http\Requests\UpdateEmployee;
 use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
@@ -54,11 +55,13 @@ class EmployeeController extends Controller
 
     public function edit($id)
     {
-        //
+        $departments = Department::orderBy('title')->get();
+        $employee = User::findOrFail($id);
+        return view('employee.edit',compact('employee','departments'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UpdateEmployee $request, $id)
     {
         //
     }

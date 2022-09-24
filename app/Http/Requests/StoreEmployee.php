@@ -24,12 +24,12 @@ class StoreEmployee extends FormRequest
     public function rules()
     {
         return [
-            'employee_id'=>'required',
+            'employee_id'=>'required|unique:users,employee_id',
             'name'=>'required',
-            'phone' => 'required|min:9|max:11',
-            'email'=>'required|email',
+            'phone' => 'required|min:9|max:11|unique:users,phone',
+            'email'=>'required|email|unique:users,email',
             'password'=>'required',
-            'nrc_number'=>'required',
+            'nrc_number'=> 'required|unique:users,nrc_number',
             'gender'=>'required',
             'birthday'=>'required',
             'address'=>'required',
