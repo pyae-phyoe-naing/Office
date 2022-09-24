@@ -214,16 +214,25 @@
                 $(".page-wrapper").addClass("toggled");
                 $(".fa-bars").addClass("invisible");
             });
-
+            // click sidebar not area close sidebar
+            document.addEventListener('click', function(event) {
+                if (document.getElementById('show-sidebar').contains(event.target)) {
+                    $(".page-wrapper").addClass("toggled");
+                        $(".fa-bars").addClass("invisible");
+                }else if(!document.getElementById('sidebar').contains(event.target)){
+                    $(".page-wrapper").removeClass("toggled");
+                      $(".fa-bars").removeClass("invisible");
+                }
+            })
             // Sidebar End
 
-            @if(session('create'))
-              Swal.fire({
-                title: 'Success',
-                text: "{{ session('create') }}",
-                icon: 'success',
-                confirmButtonText: 'Continue'
-            })
+            @if (session('create'))
+                Swal.fire({
+                    title: 'Success',
+                    text: "{{ session('create') }}",
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
+                })
             @endif
         });
     </script>
