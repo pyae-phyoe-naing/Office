@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
-use App\Http\Requests\StoreEmployee;
 use App\User;
+use Carbon\Carbon;
+use App\Department;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Yajra\Datatables\Datatables;
+use App\Http\Requests\StoreEmployee;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -80,6 +81,9 @@ class EmployeeController extends Controller
                 }else{
                 return '<span class="badge badge-pill badge-danger">Leave</span>';
                 }
+            })
+            ->editColumn('updated_at',function($each){
+            return Carbon::parse($each->updated_at)->format('Y-m-d H:i:s');
             })
             ->rawColumns(['is_present'])
             ->make(true);

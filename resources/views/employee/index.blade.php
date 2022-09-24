@@ -15,6 +15,7 @@
                     <th class="text-center">Email</th>
                     <th class="text-center">Department</th>
                     <th class="text-center">Is Present</th>
+                    <th class="text-center">Updated at</th>
                 </thead>
             </table>
         </div>
@@ -23,7 +24,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-          
+
             $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -57,9 +58,20 @@
                         data: 'is_present',
                         name: 'is_present',
                         class: 'text-center'
+                    },
+                    {
+                        data: 'updated_at',
+                        name: 'updated_at',
+                        class: 'hidden text-center'
                     }
-
-                ]
+                ],
+                order: [
+                    [6, 'desc'] // 6 is column index
+                ],
+                columnDefs: [{
+                    target: 6,
+                    visible: false,
+                }],
             });
         })
     </script>
