@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="" method="POST"  id='create-form'>
                 @csrf
 
                 <div class="md-form">
@@ -79,6 +79,7 @@
     </div>
 @endsection
 @section('script')
+{!!JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form');!!}
     <script>
         $('#birthday').daterangepicker({
             "drops": "up",
