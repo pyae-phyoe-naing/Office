@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="" method="POST"  id='create-form'>
+            <form action="{{ route('employee.store') }}" method="POST" id='create-form'>
                 @csrf
 
                 <div class="md-form">
@@ -22,6 +22,10 @@
                 <div class="md-form">
                     <label for="">Email</label>
                     <input type="email" name="email" class="form-control" autocomplete="off">
+                </div>
+                 <div class="md-form">
+                    <label for="">Password</label>
+                    <input type="password" name="password" class="form-control" autocomplete="off">
                 </div>
                 <div class="md-form">
                     <label for="">NRC Number</label>
@@ -51,7 +55,7 @@
 
                 <div class="form-group">
                     <label for="">Department</label>
-                    <select name="gender" class="form-control">
+                    <select name="department_id" class="form-control">
                         @foreach ($departments as $department)
                             <option value="{{ $department->id }}">{{ $department->title }}</option>
                         @endforeach
@@ -79,8 +83,9 @@
     </div>
 @endsection
 @section('script')
-{!!JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form');!!}
+    {!! JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form') !!}
     <script>
+
         $('#birthday').daterangepicker({
             "drops": "up",
             "showDropdowns": true,

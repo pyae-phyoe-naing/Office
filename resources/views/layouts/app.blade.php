@@ -171,12 +171,17 @@
     {{-- DateRangePicker --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
+    {{-- Data Table --}}
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <!-- Laravel Javascript Validation -->
- <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+    {{-- Sweet Alert2 --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         jQuery(function($) {
+
+            // Sidebar Start
 
             $(".sidebar-dropdown > a").click(function() {
                 $(".sidebar-submenu").slideUp(200);
@@ -210,9 +215,16 @@
                 $(".fa-bars").addClass("invisible");
             });
 
+            // Sidebar End
 
-
-
+            @if(session('create'))
+              Swal.fire({
+                title: 'Success',
+                text: "{{ session('create') }}",
+                icon: 'success',
+                confirmButtonText: 'Continue'
+            })
+            @endif
         });
     </script>
     @yield('script')

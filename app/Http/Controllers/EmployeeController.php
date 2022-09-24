@@ -3,84 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Http\Requests\StoreEmployee;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Yajra\Datatables\Datatables;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('employee.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $departments = Department::orderBy('title')->get();
         return view('employee.create',compact('departments'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(StoreEmployee $request)
     {
-        //
+        $employee = new User();
+        $employee->employee_id = $request->employee_id;
+        $employee->name = $request->name;
+        $employee->phone = $request->phone;
+        $employee->email = $request->email;
+        $employee->password = Hash::make($request->password);
+        $employee->nrc_number = $request->nrc_number;
+        $employee->gender = $request->gender;
+        $employee->birthday = $request->birthday;
+        $employee->address = $request->address;
+        $employee->department_id = $request->department_id;
+        $employee->date_of_join = $request->date_of_join;
+        $employee->is_present = $request->is_present;
+        $employee->save();
+        return redirect()->route('employee.index')->with('create','New employee successfully created');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
