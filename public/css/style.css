@@ -41,6 +41,16 @@
     overflow: scroll !important;
 }
 /* Datatabale  */
+.action-icon a{
+    padding: 5px;
+    background: #eee ;
+    border-radius: 5px;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin: 3px !important;
+    line-height: 25px !important;
+}
 .paginate_button{
     background: #eee;
     color: #fff !important;
@@ -56,19 +66,20 @@ table.dataTable>tbody>tr.child ul.dtr-details {
 table.dataTable>tbody>tr.child ul.dtr-details>li{
     text-align: left !important;
 }
-div.dataTables_wrapper div.dataTables_filter label {
 
+
+@media screen and (max-width: 767px){
+    div.dataTables_wrapper div.dataTables_filter label {
     width: 100%;
 }
-div.dataTables_wrapper div.dataTables_filter input {
-    width: 75% !important;
-}
-@media screen and (max-width: 767px){
 div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info, div.dataTables_wrapper div.dataTables_paginate {
     text-align: left !important;
 }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     justify-content: start!important;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+    width: 75% !important;
 }
 }
 

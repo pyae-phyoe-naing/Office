@@ -16,6 +16,7 @@
                     <th class="text-center">Email</th>
                     <th class="text-center">Department</th>
                     <th class="text-center">Is Present</th>
+                    <th class="text-center">Action</th>
                     <th class="text-center">Updated at</th>
                 </thead>
             </table>
@@ -66,6 +67,11 @@
                         class: 'text-center'
                     },
                     {
+                        data: 'action',
+                        name: 'action',
+                        class: ' text-center'
+                    },
+                     {
                         data: 'updated_at',
                         name: 'updated_at',
                         class: ' text-center'
@@ -75,7 +81,7 @@
                     [7, 'desc'] // 6 is column index
                 ],
                 columnDefs: [{
-                        target: [7],
+                        target: [8],
                         visible: false,
                     }, {
                         target: [0],

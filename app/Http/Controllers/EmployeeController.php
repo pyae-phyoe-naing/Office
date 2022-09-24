@@ -88,7 +88,12 @@ class EmployeeController extends Controller
             ->addColumn('plus-icon',function($each){
                 return null;
             })
-            ->rawColumns(['is_present'])
+            ->addColumn('action',function($each){
+                $edit_icon = '<a class="text-warning" href="'.route('employee.edit',$each->id).'"><i class="far fa-edit"></i></a>';
+                $info_icon = '<a class="text-info" href="'.route('employee.show',$each->id).'"><i class="fas fa-info-circle"></i></a>';
+                return '<div class="action-icon">'.$edit_icon.$info_icon.'</div>';
+            })
+            ->rawColumns(['is_present','action'])
             ->make(true);
     }
 }
