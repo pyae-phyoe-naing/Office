@@ -20,6 +20,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     {{-- Datatable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+    {{-- DateRangePicker --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -63,7 +65,7 @@
                             <span>General</span>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ url('/') }}">
                                 <i class="fa fa-home"></i>
                                 <span>Home</span>
                             </a>
@@ -120,7 +122,7 @@
                 </div>
             </div>
         </div>
-        <div class="py-4">
+        <div class="py-4 content">
             <div class="d-flex justify-content-center ">
                 <div class="col-md-8">
                     @yield('content')
@@ -166,6 +168,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
     {{-- Datatable --}}
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    {{-- DateRangePicker --}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script>
         jQuery(function($) {

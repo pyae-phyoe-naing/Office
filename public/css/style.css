@@ -2,6 +2,9 @@
     padding:6px;
     font-size: 12px;
 }
+.btn{
+    font-size: 14px !important;
+}
 .btn-theme{
     color: #fff;
     background-color: #4CD195 !important;
@@ -24,13 +27,18 @@
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
 .bottom-bar a{
-        padding:15px;
+        padding:5px 25px;
         text-align: center;
         color: #000;
 }
 .bottom-bar a p{
     font-size: 12px;
     text-transform: uppercase;
+}
+/* content */
+.content{
+    height: 85vh !important;
+    overflow: scroll !important;
 }
 /* Database  */
 .pagination .page-item.active .page-link {

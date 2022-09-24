@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\User;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -25,7 +26,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $departments = Department::orderBy('title')->get();
+        return view('employee.create',compact('departments'));
     }
 
     /**
