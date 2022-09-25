@@ -78,7 +78,7 @@
                     }
                 ],
                 order: [
-                    [7, 'desc'] // 6 is column index
+                    [8, 'desc'] // 6 is column index
                 ],
                 columnDefs: [{
                         target: [8],

@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('employee.store') }}" method="POST" id='create-form'>
+            <form action="{{ route('employee.store') }}" method="POST" id='create-form' enctype="multipart/form-data">
                 @csrf
 
                 <div class="md-form">
