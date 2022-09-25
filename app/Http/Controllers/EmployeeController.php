@@ -111,7 +111,7 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         $employee = User::findOrFail($id);
-        if($employee->profile_image){
+        if ($employee->profile_image) {
             Storage::disk('public')->delete('employee/' . $employee->profile_image);
         }
         $employee->delete();
@@ -122,6 +122,11 @@ class EmployeeController extends Controller
     {
         $employees = User::with('department');
         return Datatables::of($employees)
+            ->filterColumn('department_name',function($query,$keyword){
+                $query->whereHas('department',function($dquery) use($keyword){
+                    $dquery->where('title','like','%'.$keyword.'%');
+                });
+            })
             ->addColumn('department_name', function ($each) {
                 return $each->department ? $each->department->title : '-';
             })
@@ -141,11 +146,11 @@ class EmployeeController extends Controller
             ->addColumn('action', function ($each) {
                 $edit_icon = '<a class="text-warning" href="' . route('employee.edit', $each->id) . '"><i class="far fa-edit"></i></a>';
                 $info_icon = '<a class="text-info" href="' . route('employee.show', $each->id) . '"><i class="fas fa-info-circle"></i></a>';
-                $del_icon = '<a class="text-danger delete-btn" data-id="'.$each->id.'" href="#"><i class="fas fa-trash-alt"></i></a>';
+                $del_icon = '<a class="text-danger delete-btn" data-id="' . $each->id . '" href="#"><i class="fas fa-trash-alt"></i></a>';
                 return '<div class="action-icon">' . $edit_icon . $info_icon . $del_icon . '</div>';
             })
-            ->editColumn('profile_image',function($each){
-               return '<img src="'.$each->profile_image_path().'" class="profile-thumbnail"/><p class="my-1">'.$each->name.'</p>';
+            ->editColumn('profile_image', function ($each) {
+                return '<img src="' . $each->profile_image_path() . '" class="profile-thumbnail"/><p class="my-1">' . $each->name . '</p>';
             })
             ->rawColumns(['is_present', 'action', 'profile_image'])
             ->make(true);
