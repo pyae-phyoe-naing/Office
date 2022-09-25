@@ -10,6 +10,7 @@
             <table class="table table-bordered Datatable display nowrap" style="width:100%">
                 <thead>
                     <th class="text-center no-sort"></th>
+                    <th class="text-center no-sort">Profile</th>
                     <th class="text-center">Employee ID</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Phone</th>
@@ -34,6 +35,11 @@
                 columns: [{
                         data: 'plus-icon',
                         name: 'plus-icon',
+                        class: 'text-center'
+                    },
+                     {
+                        data: 'profile_image',
+                        name: 'profile_image',
                         class: 'text-center'
                     },
                     {
@@ -78,10 +84,10 @@
                     }
                 ],
                 order: [
-                    [8, 'desc'] // 6 is column index
+                    [9, 'desc'] // 6 is column index
                 ],
                 columnDefs: [{
-                        target: [8],
+                        target: [9],
                         visible: false,
                     }, {
                         target: [0],

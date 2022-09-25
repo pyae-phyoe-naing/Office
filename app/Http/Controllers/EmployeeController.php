@@ -144,7 +144,10 @@ class EmployeeController extends Controller
                 $del_icon = '<a class="text-danger delete-btn" data-id="'.$each->id.'" href="#"><i class="fas fa-trash-alt"></i></a>';
                 return '<div class="action-icon">' . $edit_icon . $info_icon . $del_icon . '</div>';
             })
-            ->rawColumns(['is_present', 'action'])
+            ->editColumn('profile_image',function($each){
+               return '<img src="'.$each->profile_image_path().'" class="profile-thumbnail"/><p class="my-1">'.$each->name.'</p>';
+            })
+            ->rawColumns(['is_present', 'action', 'profile_image'])
             ->make(true);
     }
 }

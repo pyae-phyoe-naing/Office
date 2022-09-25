@@ -64,6 +64,13 @@ body{
 .dash_border{
     border-left: 2px dashed #ddd;
 }
+.profile-thumbnail{
+    padding: 3px;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
 /* Datatabale  */
 .action-icon a{
     padding: 5px;
