@@ -18,7 +18,7 @@
                     <th class="text-center">Department</th>
                     <th class="text-center">Is Present</th>
                     <th class="text-center no-sort">Action</th>
-                    <th class="text-center">Updated at</th>
+                    <th class="text-center hidden">Updated at</th>
                 </thead>
             </table>
         </div>
@@ -29,15 +29,13 @@
         $(document).ready(function() {
 
             var table = $('.Datatable').DataTable({
-                processing: true,
-                serverSide: true,
                 ajax: '/employee/datatable/ssd',
                 columns: [{
                         data: 'plus-icon',
                         name: 'plus-icon',
                         class: 'text-center'
                     },
-                     {
+                    {
                         data: 'profile_image',
                         name: 'profile_image',
                         class: 'text-center'
@@ -85,34 +83,7 @@
                 ],
                 order: [
                     [9, 'desc'] // 6 is column index
-                ],
-                columnDefs: [{
-                        target: [9],
-                        visible: false,
-                    }, {
-                        target: [0],
-                        class: 'control',
-                    }, {
-                        target: 'no-sort',
-                        orderable: false
-                    },
-                    {
-                        target: 'hidden',
-                        orderable: false
-                    },
-                    {
-                        target: 'no-search',
-                        searchable: false
-                    }
-                ],
-                responsive: true,
-                language: {
-                    paginate: {
-                        "previous": "<i class='far fa-arrow-alt-circle-left'></i>",
-                        "next": "<i class='far fa-arrow-alt-circle-right'></i>"
-                    },
-                    processing: "<img src='/image/loading.gif' style='width:50px'/><p class='my-3'>Loading...</p>"
-                },
+                ]
             });
 
             // delete employee

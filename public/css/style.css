@@ -15,7 +15,9 @@
 body{
     background: #EDF2F6;
 }
-
+.table td,.table th{
+    vertical-align: middle;
+}
 /* ------ Header Menu ---------  */
 .app-bar{
      background-color: #fff;
@@ -72,6 +74,10 @@ body{
     border: 1px solid #ddd;
 }
 /* Datatabale  */
+  /* Datatable Search Mark or Hightlight */
+mark{
+    background:#4CD195;
+}
 .action-icon a{
     padding: 5px;
     background: #eee ;

@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-   {{-- ------------------------ --}}
+    {{-- ------------------------ --}}
     <title>@yield('title')</title>
 
     <!-- Font Awesome -->
@@ -140,16 +140,16 @@
                             <p class='mb-0'>Home</p>
                         </a>
                         <a href="">
-                            <i class="fa fa-home"></i>
-                            <p class='mb-0'>Home</p>
+                            <i class="fas fa-user-clock"></i>
+                            <p class='mb-0'>Attendance</p>
                         </a>
                         <a href="">
-                            <i class="fa fa-home"></i>
-                            <p class='mb-0'>Home</p>
+                            <i class="fas fa-briefcase"></i>
+                            <p class='mb-0'>Project</p>
                         </a>
                         <a href="">
-                            <i class="fa fa-home"></i>
-                            <p class='mb-0'>Home</p>
+                            <i class="fa fa-user"></i>
+                            <p class='mb-0'>Profile</p>
                         </a>
                     </div>
                 </div>
@@ -177,6 +177,9 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     {{-- Datatable responsive --}}
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    {{-- Datatable Search Mark or Hightlight --}}
+    <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
     {{-- Sweet Alert2 --}}
@@ -187,15 +190,46 @@
     <script>
         jQuery(function($) {
 
+            // Datatable Default Common code
+            $.extend(true, $.fn.dataTable.defaults, {
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                mark: true,
+                columnDefs: [{
+                        target: [0],
+                        class: 'control',
+                    }, {
+                        target: 'no-sort',
+                        orderable: false
+                    },
+                    {
+                        target: 'hidden',
+                        visible: false
+                    },
+                    {
+                        target: 'no-search',
+                        searchable: false
+                    }
+                ],
+                language: {
+                    paginate: {
+                        "previous": "<i class='far fa-arrow-alt-circle-left'></i>",
+                        "next": "<i class='far fa-arrow-alt-circle-right'></i>"
+                    },
+                    processing: "<img src='/image/loading.gif' style='width:50px'/><p class='my-3'>Loading...</p>"
+                },
+            });
+
             // CSRF Token
             let token = document.head.querySelector('meta[name="csrf-token"]')
-            if(token){
+            if (token) {
                 $.ajaxSetup({
-                   headers:{
-                    'X-CSRF-TOKEN' : token.content
-                   }
-            });
-            }else{
+                    headers: {
+                        'X-CSRF-TOKEN': token.content
+                    }
+                });
+            } else {
                 console.error('CSRF Token not found');
             }
             // Sidebar Start
