@@ -13,6 +13,7 @@
     color: #fff !important;
 }
 
+
 /* ------ Header Menu ---------  */
 .app-bar{
     padding:10px 0 !important;
@@ -21,6 +22,7 @@
 
 /* ------ Bottom Menu ---------  */
 .bottom-bar{
+    background-color: #fff;
     width: 100%;
     position:absolute;
     bottom: 0;
@@ -48,6 +50,16 @@
 
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+.detail_profile_img{
+    width:140px;
+    height: 140px;
+    border-radius: 100%;
+    border: 1px solid #4CD195;
+    padding: 3px;
+}
+.dash_border{
+    border-left: 2px dashed #ddd;
 }
 /* Datatabale  */
 .action-icon a{
