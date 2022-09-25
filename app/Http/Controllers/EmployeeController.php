@@ -8,8 +8,9 @@ use App\Department;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests\StoreEmployee;
-use App\Http\Requests\UpdateEmployee;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdateEmployee;
+use Illuminate\Support\Facades\Redirect;
 
 class EmployeeController extends Controller
 {
@@ -49,7 +50,8 @@ class EmployeeController extends Controller
 
     public function show($id)
     {
-        //
+        $employee = User::findOrFail($id);
+        return view('employee.show',compact('employee'));
     }
 
 
@@ -77,7 +79,8 @@ class EmployeeController extends Controller
         $employee->date_of_join = $request->date_of_join;
         $employee->is_present = $request->is_present;
         $employee->update();
-        return redirect()->route('employee.index')->with('update', 'Employee successfully updated');
+        // return redirect()->route('employee.index')->with('update', 'Employee successfully updated');
+        return Redirect::to('/employee')->with(['update' => 'Employee successfully updated']);
     }
 
     public function destroy($id)

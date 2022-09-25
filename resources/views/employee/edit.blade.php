@@ -41,12 +41,12 @@
 
                 <div class="md-form">
                     <label for="">Birthday</label>
-                    <input type="text" name="birthday" class="form-control" id='birthday'>
+                    <input type="text" name="birthday" value="{{ $employee->birthday }}" class="form-control" id='birthday'>
                 </div>
 
                 <div class="md-form">
                     <label for="">Date Of Join</label>
-                    <input type="text" name="date_of_join" class="form-control" id='date_of_join'>
+                    <input type="text" name="date_of_join" value="{{ $employee->date_of_join }}"  class="form-control" id='date_of_join'>
                 </div>
                 <div class="md-form">
                     <label for="">Address</label>
