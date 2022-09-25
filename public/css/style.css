@@ -40,6 +40,15 @@
     height: 85vh !important;
     overflow: scroll !important;
 }
+/*  Preview Image */
+
+.preview_image img{
+    margin: 10px 5px 0  5px !important;
+    width: 100px;
+
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
 /* Datatabale  */
 .action-icon a{
     padding: 5px;

@@ -32,6 +32,13 @@
                     <input type="text" name="nrc_number" class="form-control" autocomplete="off">
                 </div>
                 <div class="form-group">
+                    <label for="profile_image">Profile Image</label>
+                    <input type="file" name="profile_image" class="form-control p-1" id="profile_image">
+                    <div class="preview_image">
+
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="">Gender</label>
                     <select name="gender" class="form-control">
                         <option value="male">Male</option>
@@ -69,10 +76,6 @@
                     </select>
                 </div>
 
-
-
-
-
                 <div class="d-flex justify-content-center">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-sm btn-theme btn-block my-4">Confirm</button>
@@ -85,7 +88,17 @@
 @section('script')
     {!! JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form') !!}
     <script>
-
+       // Profile Image Preview
+        $('#profile_image').on('change',function(){
+            var file_length = document.getElementById('profile_image').files.length;
+            // console.log(file_length);
+            // console.log(event.target.files);
+            $('.preview_image').html('');
+            for(var i=0;i<file_length;i++){
+                $('.preview_image').append(`<img src="${URL.createObjectURL(event.target.files[i])}"/>`)
+            }
+        })
+        // Birthday / Date of Join
         $('#birthday').daterangepicker({
             "drops": "up",
             "showDropdowns": true,
