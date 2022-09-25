@@ -27,8 +27,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-
-
 </head>
 
 <body>
@@ -117,7 +115,11 @@
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
-                        <a href="#" id="show-sidebar"><i class="fas fa-bars"></i></a>
+                        @if(request()->is('/'))
+                        <a href="#" id="show-sidebar"><i class="fas fa-bars "></i></a>
+                        @else
+                        <a href="#" id="back-btn"><i class="fas fa-chevron-left"></i></a>
+                        @endif
                         <h5 class="mb-0">@yield('title')</h5>
                         <a href=""></a>
                     </div>
@@ -232,8 +234,15 @@
             } else {
                 console.error('CSRF Token not found');
             }
-            // Sidebar Start
 
+            // Back Button
+            $('#back-btn').on('click',function(e){
+                e.preventDefault();
+                window.history.go(-1);
+                return false;
+            })
+
+            // Sidebar Start
             $(".sidebar-dropdown > a").click(function() {
                 $(".sidebar-submenu").slideUp(200);
                 if (

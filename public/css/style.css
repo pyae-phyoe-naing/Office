@@ -18,6 +18,9 @@ body{
 .table td,.table th{
     vertical-align: middle;
 }
+.app-bar i{
+    color: #000;
+}
 /* ------ Header Menu ---------  */
 .app-bar{
      background-color: #fff;
@@ -87,6 +90,7 @@ mark{
     display: inline-block;
     margin: 3px !important;
     line-height: 25px !important;
+    text-align: center;
 }
 .paginate_button{
     background: #eee;
