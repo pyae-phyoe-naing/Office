@@ -12,10 +12,13 @@
 .btn-theme:hover{
     color: #fff !important;
 }
-
+body{
+    background: #EDF2F6;
+}
 
 /* ------ Header Menu ---------  */
 .app-bar{
+     background-color: #fff;
     padding:10px 0 !important;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }

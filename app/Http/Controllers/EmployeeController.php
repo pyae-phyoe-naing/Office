@@ -25,17 +25,17 @@ class EmployeeController extends Controller
     public function create()
     {
         $departments = Department::orderBy('title')->get();
-        return view('employee.create',compact('departments'));
+        return view('employee.create', compact('departments'));
     }
 
 
     public function store(StoreEmployee $request)
     {
         $profile_image_name = null;
-        if($request->hasFile('profile_image')){
+        if ($request->hasFile('profile_image')) {
             $file = $request->file('profile_image');
-            $profile_image_name = time()."_".uniqid().'.'.$file->getClientOriginalExtension();
-            Storage::disk('public')->put('employee/'.$profile_image_name, file_get_contents($file));
+            $profile_image_name = time() . "_" . uniqid() . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put('employee/' . $profile_image_name, file_get_contents($file));
             // public => storage disk (app/public)
         }
         $employee = new User();
@@ -53,14 +53,14 @@ class EmployeeController extends Controller
         $employee->date_of_join = $request->date_of_join;
         $employee->is_present = $request->is_present;
         $employee->save();
-        return redirect()->route('employee.index')->with('create','New employee successfully created');
+        return redirect()->route('employee.index')->with('create', 'New employee successfully created');
     }
 
 
     public function show($id)
     {
         $employee = User::findOrFail($id);
-        return view('employee.show',compact('employee'));
+        return view('employee.show', compact('employee'));
     }
 
 
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
     {
         $departments = Department::orderBy('title')->get();
         $employee = User::findOrFail($id);
-        return view('employee.edit',compact('employee','departments'));
+        return view('employee.edit', compact('employee', 'departments'));
     }
 
 
@@ -110,7 +110,12 @@ class EmployeeController extends Controller
 
     public function destroy($id)
     {
-        //
+        $employee = User::findOrFail($id);
+        if($employee->profile_image){
+            Storage::disk('public')->delete('employee/' . $employee->profile_image);
+        }
+        $employee->delete();
+        return 'success';
     }
 
     public function ssd(Request $request)
@@ -120,25 +125,26 @@ class EmployeeController extends Controller
             ->addColumn('department_name', function ($each) {
                 return $each->department ? $each->department->title : '-';
             })
-            ->editColumn('is_present',function($each){
-                if($each->is_present == 1){
+            ->editColumn('is_present', function ($each) {
+                if ($each->is_present == 1) {
                     return '<span class="badge badge-pill badge-success">Present</span>';
-                }else{
-                return '<span class="badge badge-pill badge-danger">Leave</span>';
+                } else {
+                    return '<span class="badge badge-pill badge-danger">Leave</span>';
                 }
             })
-            ->editColumn('updated_at',function($each){
-            return Carbon::parse($each->updated_at)->format('Y-m-d H:i:s');
+            ->editColumn('updated_at', function ($each) {
+                return Carbon::parse($each->updated_at)->format('Y-m-d H:i:s');
             })
-            ->addColumn('plus-icon',function($each){
+            ->addColumn('plus-icon', function ($each) {
                 return null;
             })
-            ->addColumn('action',function($each){
-                $edit_icon = '<a class="text-warning" href="'.route('employee.edit',$each->id).'"><i class="far fa-edit"></i></a>';
-                $info_icon = '<a class="text-info" href="'.route('employee.show',$each->id).'"><i class="fas fa-info-circle"></i></a>';
-                return '<div class="action-icon">'.$edit_icon.$info_icon.'</div>';
+            ->addColumn('action', function ($each) {
+                $edit_icon = '<a class="text-warning" href="' . route('employee.edit', $each->id) . '"><i class="far fa-edit"></i></a>';
+                $info_icon = '<a class="text-info" href="' . route('employee.show', $each->id) . '"><i class="fas fa-info-circle"></i></a>';
+                $del_icon = '<a class="text-danger delete-btn" data-id="'.$each->id.'" href="#"><i class="fas fa-trash-alt"></i></a>';
+                return '<div class="action-icon">' . $edit_icon . $info_icon . $del_icon . '</div>';
             })
-            ->rawColumns(['is_present','action'])
+            ->rawColumns(['is_present', 'action'])
             ->make(true);
     }
 }

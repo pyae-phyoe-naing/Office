@@ -27,7 +27,7 @@
     <script>
         $(document).ready(function() {
 
-            $('.Datatable').DataTable({
+            var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '/employee/datatable/ssd',
@@ -71,7 +71,7 @@
                         name: 'action',
                         class: ' text-center'
                     },
-                     {
+                    {
                         data: 'updated_at',
                         name: 'updated_at',
                         class: ' text-center'
@@ -102,12 +102,35 @@
                 responsive: true,
                 language: {
                     paginate: {
-                       "previous":"<i class='far fa-arrow-alt-circle-left'></i>",
-                       "next":"<i class='far fa-arrow-alt-circle-right'></i>"
+                        "previous": "<i class='far fa-arrow-alt-circle-left'></i>",
+                        "next": "<i class='far fa-arrow-alt-circle-right'></i>"
                     },
-                processing:"<img src='/image/loading.gif' style='width:50px'/><p class='my-3'>Loading...</p>"
+                    processing: "<img src='/image/loading.gif' style='width:50px'/><p class='my-3'>Loading...</p>"
                 },
             });
+
+            // delete employee
+            $(document).on('click', '.delete-btn', function(e) { // parent to child select method
+                e.preventDefault();
+                var id = $(this).data('id');
+                //console.log(id);
+                swal({
+                        text: "Are you sure delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                    method: "DELETE",
+                                    url: `/employee/${id}`,
+                                })
+                                .done(function(msg) {
+                                    table.ajax.reload();
+                                });
+                        }
+                    });
+            })
         })
     </script>
 @endsection

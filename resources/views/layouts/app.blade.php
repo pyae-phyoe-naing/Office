@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+   {{-- ------------------------ --}}
     <title>@yield('title')</title>
 
     <!-- Font Awesome -->
@@ -181,10 +181,23 @@
     <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
     {{-- Sweet Alert2 --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- Sweet Alert1 --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         jQuery(function($) {
 
+            // CSRF Token
+            let token = document.head.querySelector('meta[name="csrf-token"]')
+            if(token){
+                $.ajaxSetup({
+                   headers:{
+                    'X-CSRF-TOKEN' : token.content
+                   }
+            });
+            }else{
+                console.error('CSRF Token not found');
+            }
             // Sidebar Start
 
             $(".sidebar-dropdown > a").click(function() {
@@ -222,10 +235,10 @@
             document.addEventListener('click', function(event) {
                 if (document.getElementById('show-sidebar').contains(event.target)) {
                     $(".page-wrapper").addClass("toggled");
-                        $(".fa-bars").addClass("invisible");
-                }else if(!document.getElementById('sidebar').contains(event.target)){
+                    $(".fa-bars").addClass("invisible");
+                } else if (!document.getElementById('sidebar').contains(event.target)) {
                     $(".page-wrapper").removeClass("toggled");
-                      $(".fa-bars").removeClass("invisible");
+                    $(".fa-bars").removeClass("invisible");
                 }
             })
             // Sidebar End
@@ -238,7 +251,7 @@
                     confirmButtonText: 'Continue'
                 })
             @endif
-             @if (session('update'))
+            @if (session('update'))
                 Swal.fire({
                     title: 'Success',
                     text: "{{ session('update') }}",
