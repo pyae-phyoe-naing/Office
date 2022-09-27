@@ -1,23 +1,26 @@
 @extends('layouts.app')
-@section('title','Office')
+@section('title', 'Home')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-start">
+                        <img src="{{ $employee->profile_image_path() }}" class="detail_profile_img" />
+                        <div class="py-3 px-3">
+                            <h3>{{ $employee->name }}</h3>
+                            <p class="mb-2 text-muted">{{ $employee->employee_id }}</p>
+                            <p class="mb-2 text-muted"><span
+                                    class="badge badge-pill badge-light border">{{ $employee->department ? $employee->department->title : '-' }}</span>
+                            </p>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    </div>
                 </div>
+
             </div>
+
+
         </div>
     </div>
-</div>
 @endsection

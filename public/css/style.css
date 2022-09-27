@@ -1,6 +1,7 @@
 .badge{
-    padding:6px;
+    padding:5px 10px ;
     font-size: 12px;
+    box-shadow: none !important;
 }
 .btn{
     font-size: 14px !important;
@@ -126,6 +127,11 @@ div.dataTables_wrapper div.dataTables_filter input {
 
 
 /*  -------- Side Bar ----------- */
+.sidebar-wrapper .sidebar-header .user-pic img {
+    border-radius: 10px;
+    background: #eee;
+    padding: 3px;
+}
 #show-sidebar{
     color: #000;
     font-size: 20px;
@@ -501,13 +507,13 @@ div.dataTables_wrapper div.dataTables_filter input {
 /*-----------------------------chiller-theme-------------------------------------------------*/
 
 .chiller-theme .sidebar-wrapper {
-    background: #31353D;
+    background: #2D3747;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-header,
 .chiller-theme .sidebar-wrapper .sidebar-search,
 .chiller-theme .sidebar-wrapper .sidebar-menu {
-    border-top: 1px solid #3a3f48;
+    border-top: 1px solid #2D3747;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
@@ -546,7 +552,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 .chiller-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
 .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
-    color: #16c7ff;
+    color: #4CD195;
     text-shadow:0px 0px 10px rgba(22, 199, 255, 0.5);
 }
 

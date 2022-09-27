@@ -43,14 +43,13 @@
                 <div class="sidebar-header">
                     <div class="user-pic">
                         <img class="img-responsive img-rounded"
-                            src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
-                            alt="User picture">
+                            src="{{ auth()->user()->profile_image_path() }}"
+                            >
                     </div>
                     <div class="user-info">
-                        <span class="user-name">Jhon
-                            <strong>Smith</strong>
+                        <span class="user-name">{{ auth()->user()->name }}
                         </span>
-                        <span class="user-role">Administrator</span>
+                        <span class="user-role">{{ auth()->user()->department ? auth()->user()->department->title : '-' }}</span>
                         <span class="user-status">
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
@@ -137,7 +136,7 @@
             <div class="d-flex justify-content-center ">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
-                        <a href="">
+                        <a href="{{ route('home') }}">
                             <i class="fa fa-home"></i>
                             <p class='mb-0'>Home</p>
                         </a>
@@ -149,7 +148,7 @@
                             <i class="fas fa-briefcase"></i>
                             <p class='mb-0'>Project</p>
                         </a>
-                        <a href="">
+                        <a href="{{ route('profile.profile') }}">
                             <i class="fa fa-user"></i>
                             <p class='mb-0'>Profile</p>
                         </a>
